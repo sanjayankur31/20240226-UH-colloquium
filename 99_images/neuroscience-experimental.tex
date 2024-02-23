@@ -1,0 +1,49 @@
+\tikzset{
+    %Define standard arrow tip
+    >=stealth',
+    %Define style for boxes
+    punkt/.style={
+           rectangle,
+           draw=black, very thick,
+           text=FedoraDarkBlue,
+           text width=6em,
+           minimum height=2em,
+           text centered},
+    % Define arrow style
+    pil/.style={
+           <-,
+           very thick,
+           draw=FreedomPurple,
+           shorten <=2pt,
+           shorten >=2pt,}
+}
+\begin{tikzpicture}[node distance=1cm, auto,]
+ %nodes
+ \node[draw=FedoraBlue, text=FedoraBlue] (anatomy) {Anatomy};
+ \node[draw=FedoraBlue, text=FedoraBlue, right=of anatomy] (electrophysiology) {Electrophysiology};
+ \node[draw=FedoraBlue, text=FedoraBlue, right=of electrophysiology] (functional) {Functional imaging};
+ \node[draw=FedoraBlue, text=FedoraBlue, right=of functional] (behaviour) {Behaviour};
+\iffalse
+ \node[punkt, draw=FriendsMagenta, text=FriendsMagenta, above right=of anatomy]
+ (analysis) {Data analysis}
+ edge[pil, bend right=45] (anatomy.north);
+ \node[punkt, draw=FeaturesOrange, text=FeaturesOrange, below right=of analysis]
+ (theory) {Theory}
+ edge[pil, bend right=45] (analysis.east);
+ \node[punkt, draw=FirstGreen, text=FirstGreen, below left=of theory]
+ (modelling) {Modelling}
+ edge[pil, bend right=45] (theory.south)
+ edge[pil, ->, bend left=45] (anatomy.south);
+ % We make a dummy figure to make everything look nice.
+ % \node[above=of market] (dummy) {};
+ % \node[right=of dummy] (t) {Ultimate borrower}
+   % edge[pil,bend left=45] (market.east) % edges are used to connect two nodes
+   % edge[pil, bend left=45] (formidler.east); % .east since we want
+                                             % % consistent style
+ % \node[left=of dummy] (g) {Ultimate lender}
+   % edge[pil, bend right=45] (market.west)
+   % edge[pil, bend right=45] (formidler.west)
+   % edge[pil,<->, bend left=45] node[auto] {Direct (a)} (t);
+\fi
+\end{tikzpicture}
+
