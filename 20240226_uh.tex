@@ -3,16 +3,9 @@
 %% packages %%
 % support for coloured text
 \usepackage{xcolor}
-\definecolor{FedoraBlue}{cmyk}{1.0,0.46,0.0,0.0}
-\definecolor{FedoraDarkBlue}{cmyk}{1.0,0.57,0.0,0.38}
-\definecolor{FriendsMagenta}{cmyk}{0.0,0.8,0.4,0.0}
-\definecolor{FeaturesOrange}{cmyk}{0.0,0.5,1.0,0.0}
-\definecolor{FirstGreen}{cmyk}{0.5,0.0,1.0,0.0}
-\definecolor{FreedomPurple}{cmyk}{0.57,0.46,0.0,0.0}
-
 % moreland colour palette:
 % https://github.com/Gnuplotting/gnuplot-palettes/blob/master/moreland.pal
-% create
+% create: blue
 \definecolor{moreland1}{HTML}{3b4cc0}
 %visualise
 \definecolor{moreland2}{HTML}{688aef}
@@ -26,7 +19,7 @@
 \definecolor{moreland6}{HTML}{f7a789}
 %reuse
 \definecolor{moreland7}{HTML}{e36a53}
-% extra
+% extra: red
 \definecolor{moreland8}{HTML}{b40426}
 
 % set 1 colour palette
@@ -64,9 +57,8 @@
 % for strike through
 \usepackage[normalem]{ulem}
 % links, urls, refs
-\definecolor{links}{HTML}{2A1B81}
 \usepackage{hyperref}
-\hypersetup{colorlinks,linkcolor=Green,urlcolor=links}
+\hypersetup{colorlinks,linkcolor=Green,urlcolor=set18}
 % graphics
 \usepackage{graphicx}
 % algorithm
@@ -94,10 +86,10 @@
 \setbeamerfont{caption}{size=\tiny}
 \setbeamercolor{alerted text}{fg=Green}
 \setbeamerfont{note page}{size=\small}
-\setbeamercolor{alerted text}{fg=FeaturesOrange}
-\setbeamercolor{progress bar}{fg=FriendsMagenta}
-\setbeamercolor{title separator}{fg=FriendsMagenta}
-\setbeamercolor{frametitle}{bg=FedoraDarkBlue}
+\setbeamercolor{alerted text}{fg=set15}
+\setbeamercolor{progress bar}{fg=set18}
+\setbeamercolor{title separator}{fg=set18}
+\setbeamercolor{frametitle}{bg=moreland1}
 
 \renewcommand{\figurename}{}
 
@@ -138,13 +130,15 @@
     \end{column}
     \begin{column}{0.5\textwidth}
       \begin{itemize}
-        \item \alert{86B} neurons\footnotemark{}
-          \pause{}
-        \item complex \alert{morphologies:} dendritic trees
-        \item active and passive \alert{ion channels}
-        \item \alert{inputs} spread out over the dendritic tree
-          \pause{}
-        \item but: also 85B \alert{glia}
+        \only<1>{%
+          \item<1> \alert{86B} neurons
+          \item<1> also similar number of \alert{glia}
+        }
+        \only<2>{%
+          \item<2> sensing
+          \item<2> cognition
+          \item<2> action
+        }
       \end{itemize}
     \end{column}
   \end{columns}
@@ -156,6 +150,29 @@
   \item Experiments provide us with direct information.
   \item They study the brain at different levels.
   \item There's no right level. It depends on the question being investigated.
+}
+\begin{frame}[c]{The brain: diversity of neurons}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth,angle=-90]{99_images/HL23PYR-red}
+    \includegraphics[width=0.5\linewidth,angle=-90]{99_images/HL23PV}
+  \end{figure}
+  \note[item]{Neurons in the brain are diverse. Here we show different morphologies, but they also differer by other parameters---protein composition and so on.}
+  \footnotetext[1]{\fullcite{Yao2022}}
+\end{frame}
+\begin{frame}[c]
+  \frametitle{Experiments provide a window into the brain}
+  Multiple scales of experiments goes here
+\end{frame}
+\note[enumerate]{%
+\item There is so much data out there now, as we embrace Open Science.
+\item Models/theory are necessary for:
+\item combining independent experimental results into unified theories
+\item exploring these complex systems across wider range of conditions
+\item generating new testable hypotheses
+\item RNNs are appropriate for lots of projects, for example.
+\item So are whole brain neural mass models.
+\item But, to really understand the underlying mechanisms that give rise to emergent behaviour, we must model the brain at biophysically detailed levels.
 }
 \begin{frame}[c]
   \frametitle{A \emph{mechanistic} understanding of the brain}
