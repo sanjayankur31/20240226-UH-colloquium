@@ -2,7 +2,6 @@
 
 %% packages %%
 % support for coloured text
-\usepackage{color}
 \usepackage{xcolor}
 \definecolor{FedoraBlue}{cmyk}{1.0,0.46,0.0,0.0}
 \definecolor{FedoraDarkBlue}{cmyk}{1.0,0.57,0.0,0.38}
@@ -10,6 +9,7 @@
 \definecolor{FeaturesOrange}{cmyk}{0.0,0.5,1.0,0.0}
 \definecolor{FirstGreen}{cmyk}{0.5,0.0,1.0,0.0}
 \definecolor{FreedomPurple}{cmyk}{0.57,0.46,0.0,0.0}
+
 % moreland colour palette:
 % https://github.com/Gnuplotting/gnuplot-palettes/blob/master/moreland.pal
 % create
@@ -48,7 +48,6 @@
 % pink
 \definecolor{set18}{HTML}{F781BF}
 
-
 % IPA
 \usepackage{tipa}
 \usepackage[scale=2]{ccicons}
@@ -61,14 +60,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage[style=nature,backend=biber,autocite=footnote]{biblatex}
 \addbibresource{/home/asinha/Documents/01_Readables/00_research_papers/bibliography/masterbib.bib}
-\renewcommand*{\bibfont}{\tiny}
-\usepackage[sfdefault]{roboto}
+\usepackage{roboto}
 % for strike through
 \usepackage[normalem]{ulem}
 % links, urls, refs
 \definecolor{links}{HTML}{2A1B81}
-% Fedora blue for the theme
-\definecolor{FedoraBlue}{HTML}{2A1B81}
 \usepackage{hyperref}
 \hypersetup{colorlinks,linkcolor=Green,urlcolor=links}
 % graphics
@@ -85,18 +81,32 @@
 \usepackage{csquotes}
 % beamer theme
 % use defaults for theme
-\usetheme[numbering=fraction,sectionpage=progressbar,subsectionpage=progressbar,progressbar=frametitle]{metropolis}
-\usefonttheme[onlymath]{serif}
+\usetheme{moloch}
+% for footnotes
+% https://tex.stackexchange.com/questions/683533/beamer-theme-metropolis-does-not-allow-different-font-size-for-fullcite/683540#683540
+\setbeamerfont{bibliography entry title}{size=}
+\setbeamerfont{bibliography entry author}{size=}
+\setbeamerfont{bibliography entry location}{size=}
+\setbeamerfont{bibliography entry note}{size=}
+%\usetheme[numbering=fraction,sectionpage=progressbar,subsectionpage=progressbar,progressbar=frametitle]{metropolis}
+%\usefonttheme[onlymath]{serif}
 \setbeamerfont{footnote}{size=\tiny}
 \setbeamerfont{caption}{size=\tiny}
 \setbeamercolor{alerted text}{fg=Green}
 \setbeamerfont{note page}{size=\small}
+\setbeamercolor{alerted text}{fg=FeaturesOrange}
+\setbeamercolor{progress bar}{fg=FriendsMagenta}
+\setbeamercolor{title separator}{fg=FriendsMagenta}
+\setbeamercolor{frametitle}{bg=FedoraDarkBlue}
+
+\renewcommand{\figurename}{}
 
 % Not needed in metropolis, but in general footnote citation fixes: https://tex.stackexchange.com/questions/44217/how-can-i-stop-footcite-from-hijacking-my-beamer-columns
 % how to use multiple references to the same footnote: https://tex.stackexchange.com/questions/27763/beamer-multiple-references-to-the-same-footnote
 
 % Disable footnoterule
 \renewcommand{\footnoterule}{}
+\renewcommand*{\bibfont}{\tiny}
 
 %% title %%
 \title{The NeuroML ecosystem for standardised multi-scale modelling in neuroscience}
@@ -119,10 +129,30 @@
 %\section{Biophysically detailed models and standards}
 \begin{frame}[c]
   \frametitle{An understanding of the brain}
-  \input{99_images/neuroscience-experimental}
-  Multiple experimental figures/images go here. Showing different spatial scales.
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{figure}[h]
+        \centering
+        \includegraphics[width=\textwidth]{99_images/brain-sizes.jpg}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item \alert{86B} neurons\footnotemark{}
+          \pause{}
+        \item complex \alert{morphologies:} dendritic trees
+        \item active and passive \alert{ion channels}
+        \item \alert{inputs} spread out over the dendritic tree
+          \pause{}
+        \item but: also 85B \alert{glia}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{0.2cm}
+  \footnotetext[1]{{\tiny{\fullcite{HerculanoHouzel2009}}}}
 \end{frame}
 \note[enumerate]{%
+  \item The most recent estimate puts the number of neurons in the human brain at 86B.
   \item Experiments provide us with direct information.
   \item They study the brain at different levels.
   \item There's no right level. It depends on the question being investigated.
