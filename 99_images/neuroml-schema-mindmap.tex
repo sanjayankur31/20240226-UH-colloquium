@@ -1,0 +1,149 @@
+% https://www.baeldung.com/cs/latex-flowcharts
+% using American english
+\documentclass{standalone}
+\begin{document}
+
+% scale to fit page. using `small mindmap` overrides all the other styles
+\tikzset{root concept/.append style={font={\Huge\bfseries}}}
+% make all bold
+\tikzset{level 1 concept/.append style={font=\bfseries}}
+\tikzset{level 2 concept/.append style={font=\bfseries}}
+\tikzset{level 3 concept/.append style={font=\bfseries}}
+\tikzset{level 4 concept/.append style={font=\bfseries}}
+
+% for level 1 children, start at 15 degrees and proceed. Looks better.
+% scale to fit page as necessary
+
+\begin{tikzpicture}[
+  mindmap, concept color=set11!80,
+  text width=4cm,
+  align=flush center,
+  scale=0.5, %scale
+  every node/.append style={scale=0.6}, %scale
+  level 2/.style={level distance=3cm},
+  level 4/.style={level distance=2.1cm},
+  every concept/.append style={inner sep=1pt, minimum size=0cm},
+  decoration={amplitude=0.5cm}
+  ]
+  \node [concept, circle] {NeuroML}
+    child [grow=15, concept color=set12!80] {
+      node[concept] {\textbf{\underline{Networks}}}
+      [clockwise from=60]
+      child [concept color=set12!40, sibling angle=45] {
+        node[concept] {population}
+      }
+      child [concept color=set12!40, sibling angle=45] {
+        node[concept] {inputList}
+      }
+      child [concept color=set12!40, sibling angle=45] {
+        node[concept] {projection}
+      }
+    }
+    child [grow=-57, concept color=set13!80] {
+      node[concept] {\textbf{\underline{Cells}}}
+      [clockwise from=60]
+      child [concept color=set13!40, sibling angle=60] {
+        node[concept] {iaf\\Cell}
+      }
+      child [concept color=set13!60, sibling angle=52.5] {
+        node[concept] {biophysical\\cell}
+        [clockwise from=45]
+        child [concept color=set13!40, sibling angle=45] {
+          node[concept] {intracellular\\Properties}
+        }
+        child [concept color=set13!40, sibling angle=45] {
+          node[concept] {membrane\\Properties}
+          [clockwise from=35]
+          child [concept color=set13!40, sibling angle=90] {
+            node[concept] {channel\\Densities}
+          }
+          child [concept color=set13!40, sibling angle=60] {
+            node[concept] {specific\\Capacitances}
+          }
+        }
+        child [concept color=set13!40, sibling angle=45] {
+          node[concept] {morphology}
+          [clockwise from=330]
+          child [concept color=set13!40, sibling angle=90] {
+            node[concept] {segment\\Group}
+          }
+          child [concept color=set13!40, sibling angle=45] {
+            node[concept] {segment}
+          }
+        }
+      }
+      child [concept color=set13!40, sibling angle=52.5] {
+        node[concept] {izhikevich\\Cell}
+      }
+      child [concept color=set13!40, sibling angle=52.5] {
+        node[concept] {HindmarshRose\\Cell}
+      }
+      child [concept color=set13!40, sibling angle=52.5] {
+        node[concept] {...}
+      }
+    }
+    child [grow=-150, concept color=set14!80] {
+      node[concept] {\textbf{\underline{Synapses}}}
+      [clockwise from=-15]
+      child [concept color=set14!40, sibling angle=52.5] {
+        node[concept] {expOne\\Synapse}
+      }
+      child [concept color=set14!40, sibling angle=52.5] {
+        node[concept] {alpha\\Synapse}
+      }
+      child [concept color=set14!40, sibling angle=52.5] {
+        node[concept] {gap\\Junction}
+      }
+      child [concept color=set14!40, sibling angle=52.5] {
+        node[concept] {...}
+      }
+    }
+    child [grow=-207, concept color=set16!80] {
+      node[concept] {\textbf{\underline{Ion Channels}}}
+      [clockwise from=240]
+      child [concept color=set16!60, sibling angle=60] {
+        node[concept] {Hodgkin-Huxley}
+        [clockwise from=195]
+        child [concept color=set16!40, sibling angle=45, level distance=3cm] {
+          node[concept] {gateHH\\Rates}
+        }
+        child [concept color=set16!40, sibling angle=45, level distance=3cm] {
+          node[concept] {conductance}
+        }
+      }
+      child [concept color=set16!60, sibling angle=75] {
+        node[concept] {Kinetic Scheme}
+        [clockwise from=150]
+        child [concept color=set16!40, sibling angle=45, level distance=3cm] {
+          node[concept] {gateKS}
+        }
+        child [concept color=set16!40, sibling angle=45, level distance=3cm] {
+          node[concept] {conductance}
+        }
+      }
+      child [concept color=set16!40, sibling angle=75] {
+        node[concept] {...}
+      }
+    }
+    child [grow=-282, concept color=set17!80] {
+      node[concept] {\textbf{\underline{Inputs}}}
+      [clockwise from=187.5]
+      child [concept color=set17!60, sibling angle=52.5] {
+        node[concept] {voltage\\Clamp}
+      }
+      child [concept color=set17!60, sibling angle=52.5] {
+        node[concept] {pulse\\Generator}
+      }
+      child [concept color=set17!60, sibling angle=52.5] {
+        node[concept] {spike\\Generator}
+      }
+      child [concept color=set17!60, sibling angle=52.5] {
+        node[concept] {spike\\Array}
+      }
+      child [concept color=set17!60, sibling angle=52.5] {
+        node[concept] {...}
+      }
+    };
+
+\end{tikzpicture}
+\end{document}

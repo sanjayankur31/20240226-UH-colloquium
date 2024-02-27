@@ -45,8 +45,9 @@
 \usepackage{tipa}
 \usepackage[scale=2]{ccicons}
 \usepackage{amssymb}
+\usepackage{standalone}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta, arrows, positioning}
+\usetikzlibrary{shapes.geometric,arrows,positioning,quotes,graphs,mindmap,decorations.pathmorphing,trees}
 \usepackage{jneurosci}
 \usepackage{subcaption}
 \usepackage[T1]{fontenc}
@@ -61,6 +62,7 @@
 \hypersetup{colorlinks,linkcolor=Green,urlcolor=set18}
 % graphics
 \usepackage{graphicx}
+\graphicspath{{99_images/}}
 % algorithm
 \usepackage{algorithmic}
 \usepackage{textcomp}
@@ -73,7 +75,9 @@
 \usepackage{csquotes}
 % beamer theme
 % use defaults for theme
-\usetheme{moloch}
+\usetheme[progressbar=foot]{moloch}
+% for page numbers
+\setbeamertemplate{page number in head/foot}[appendixframenumber]
 % for footnotes
 % https://tex.stackexchange.com/questions/683533/beamer-theme-metropolis-does-not-allow-different-font-size-for-fullcite/683540#683540
 \setbeamerfont{bibliography entry title}{size=}
@@ -82,7 +86,7 @@
 \setbeamerfont{bibliography entry note}{size=}
 %\usetheme[numbering=fraction,sectionpage=progressbar,subsectionpage=progressbar,progressbar=frametitle]{metropolis}
 %\usefonttheme[onlymath]{serif}
-\setbeamerfont{footnote}{size=\tiny}
+\setbeamerfont{footnote}{size=\Tiny}
 \setbeamerfont{caption}{size=\tiny}
 \setbeamercolor{alerted text}{fg=Green}
 \setbeamerfont{note page}{size=\small}
@@ -131,19 +135,22 @@
     \begin{column}{0.5\textwidth}
       \begin{itemize}
         \only<1>{%
-          \item<1> \alert{86B} neurons
-          \item<1> also similar number of \alert{glia}
+          \item<1> \alert{\textasciitilde 86B} neurons
+          \item<1> \alert{\textasciitilde 100T} synapses
+          \item<1> also \alert{\textasciitilde 85B} glia
         }
         \only<2>{%
-          \item<2> sensing
-          \item<2> cognition
-          \item<2> action
+          \item<2> specialised \alert{circuits}
+          \item<2> different \alert{neuronal} types
+          \item<2> \alert{synaptic} connections
+          \item<2> complex \alert{sub-cellular} processes
         }
       \end{itemize}
     \end{column}
   \end{columns}
   \vspace{0.2cm}
   \footnotetext[1]{{\tiny{\fullcite{HerculanoHouzel2009}}}}
+  \footnotetext[1]{{\tiny{\fullcite{Bartheld2016}}}}
 \end{frame}
 \note[enumerate]{%
   \item The most recent estimate puts the number of neurons in the human brain at 86B.
@@ -151,18 +158,36 @@
   \item They study the brain at different levels.
   \item There's no right level. It depends on the question being investigated.
 }
-\begin{frame}[c]{The brain: diversity of neurons}
-  \begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\linewidth,angle=-90]{99_images/HL23PYR-red}
-    \includegraphics[width=0.5\linewidth,angle=-90]{99_images/HL23PV}
-  \end{figure}
-  \note[item]{Neurons in the brain are diverse. Here we show different morphologies, but they also differer by other parameters---protein composition and so on.}
-  \footnotetext[1]{\fullcite{Yao2022}}
-\end{frame}
 \begin{frame}[c]
   \frametitle{Experiments provide a window into the brain}
-  Multiple scales of experiments goes here
+  Multiple scales of experiments/data sources go here
+\end{frame}
+\note[enumerate]{%
+  \item There is so much data out there now, as we embrace Open Science.
+}
+\begin{frame}[c]
+  \frametitle{Models test \& unify experimental results; generate hypotheses}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{99_images/Murray2019-4b}\\\vspace{0.2cm}
+        \includegraphics[width=0.9\textwidth]{99_images/TVB}\\
+      \end{figure}%
+    \end{column}
+    \uncover<2>{%
+    \begin{column}{0.5\textwidth}
+      \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.65\textwidth]{99_images/20231004-HL23Net}\vspace{0.2cm}
+        \includegraphics[width=0.7\textwidth]{99_images/Maeki2020}
+      \end{figure}%
+    \end{column}}
+  \end{columns}
+  \footnotetext[1]{\fullcite{Murray2019}}
+  \footnotetext[1]{\fullcite{Schirner2023}}
+  \footnotetext[1]{\fullcite{Yao2022}}
+  \footnotetext[1]{\fullcite{MaekiMarttunen2020}}
 \end{frame}
 \note[enumerate]{%
 \item There is so much data out there now, as we embrace Open Science.
@@ -175,25 +200,10 @@
 \item But, to really understand the underlying mechanisms that give rise to emergent behaviour, we must model the brain at biophysically detailed levels.
 }
 \begin{frame}[c]
-  \frametitle{A \emph{mechanistic} understanding of the brain}
-  Figure showing multiple scales of modelling goes here.
-\end{frame}
-\note[enumerate]{%
-\item There is so much data out there now, as we embrace Open Science.
-\item Models/theory are necessary for:
-\item combining independent experimental results into unified theories
-\item exploring these complex systems across wider range of conditions
-\item generating new testable hypotheses
-\item RNNs are appropriate for lots of projects, for example.
-\item So are whole brain neural mass models.
-\item But, to really understand the underlying mechanisms that give rise to emergent behaviour, we must model the brain at biophysically detailed levels.
-}
-\begin{frame}[c]
-  \frametitle{The model life cycle}
-  \begin{itemize}
-    \item tweaked version of life cycle figure from paper goes here.
-    \item remove NeuroML, add data
-  \end{itemize}
+\frametitle{}
+\begin{center}
+\Large{A \alert{\emph{mechanistic}} understanding of the brain requires \alert{biophysically detailed} modelling}
+\end{center}
 \end{frame}
 \note[enumerate]{%
 \item The figure shows a simplified model life cycle. Can be much more complex in practice.
@@ -201,47 +211,148 @@
 \item But there's are issues---fragmentation, lack of interoperability, so many APIs.
 }
 \begin{frame}[c]
-  \frametitle{Standards enable FAIR neuroscience}
-  \begin{itemize}
-    \item NWB/BIDS for data
-    \item NeuroML/SBML etc.\ for modelling
-    \item Add logos
-  \end{itemize}
+  \frametitle{The model life cycle}
+      \begin{figure}[h]
+        \centering
+        \includegraphics[width=\textwidth]{99_images/ecosystem-no-neuroml}
+      \end{figure}
 \end{frame}
 \note[enumerate]{%
-\item Standards allow the representation of data and models in specific, agreed formats.
-\item They're not neuroscience specific, of course---even programming languages have standards.
-\item More importantly, if one knows what the data is going to look like, one can then develop tools and APIs around it.
-\item And instead of everyone writing a tool for their own standard, every tool anyone writes for the one standard can be used with everyone's data.
+\item The figure shows a simplified model life cycle. Can be much more complex in practice.
+\item Ideally, what we want is for all the stages to be connected seamlessly, but this is not true in practice.
+\item We create our model, ideally re-using already published components.
+\item Then before we simulate our model, we want to validate it in some way.
+\item We also want to analyse and visualise our model description before.
+\item Then we iteratively simulate and fit our model to data, or to produce a certain behaviour.
+\item Finally, we want to publish and openly share the model so others can use it in the future.
 }
 \begin{frame}[c]
-  \frametitle{But, too many standards?}
+  \frametitle{Computational modelling software ecosystem is fragmented}
   \begin{itemize}
-    \item XKCD here.
+    \item many specialist tools:
+      \begin{itemize}
+        \item \alert{simulation:} NEURON, NEST, Brian, GENESIS, MOOSE, STEPS, ANNarchy, TVB, LFPy, NeuroLib, EDEN, Arbor, NetPyNE
+        \item \alert{fitting:} BluePyOpt, NeuroTune, SciUnit
+      \end{itemize}
+    \item<2-> but:
+      \begin{itemize}
+        \item<2-> different APIs, syntax
+        \item<2-> not well defined model descriptions
+        \item<2-> custom machine readable internal representations
+        \item<2-> ad-hoc utilities
+      \end{itemize}
   \end{itemize}
 \end{frame}
 \note[enumerate]{%
-\item In neuroscience, we're fortunate enough to not have the issue of having too many standards.
-\item There are only a few standards in biophysically detailed modelling, and as we'll see, we ensure that these few remain interoperable.
+\item There are a lot of software tools out there for users to pick from, for different levels of modelling, optimisation, analysis.
+\item For each stage.
+\item But, they aren't designed to work together.
+\item They have their own designs, their own APIs, syntax, model representation, and usually their own suite of custom utilities to work with their model representation.
+}
+\begin{frame}[c]
+  \frametitle{}
+  \begin{center}
+  \Large{Makes computational neuroscience \alert{not FAIR (Findable, Accessible, Interoperable, Reusable)}}
+  \end{center}
+\end{frame}
+\note[enumerate]{%
+\item This means that for example, a model written in simulator A, say NEURON, cannot just be re-used in another simulator.
+\item In fact, because a majority of these tools do not have a well defined model description, even re-using models developed in the same simulator can be quite hard.
+\item It takes a lot of human resources to translate/convert models to be able to re-use them.
+\item It also makes it very hard to study or analyse these models.
+}
+\begin{frame}[c]
+  \frametitle{Standards enable FAIR neuroscience}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{99_images/incf}\\\vspace{0.2cm}
+        \includegraphics[width=0.4\textwidth]{99_images/combine}\\
+        \scriptsize{COMBINE}
+      \end{figure}%
+    \end{column}
+    \uncover<2>{%
+    \begin{column}{0.5\textwidth}
+      \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.35\textwidth]{99_images/NWB}\\\vspace{0.2cm}
+        \includegraphics[width=0.35\textwidth]{99_images/sbml}\\\vspace{0.2cm}
+        \includegraphics[width=0.35\textwidth]{99_images/sedml}\\\vspace{0.4cm}
+        \includegraphics[width=0.35\textwidth]{99_images/neuroml-logo}
+      \end{figure}%
+    \end{column}}
+  \end{columns}
+  \footnotetext[1]{\fullcite{Abrams2022}: \url{https://incf.org}}
+  \footnotetext[1]{COmputational Modeling in BIology NEtwork (COMBINE): \url{https://co.mbine.org/}}
+\end{frame}
+\note[enumerate]{%
+\item Now, this isn't a problem unique to computational neuroscience, or even neuroscience.
+\item Multiple scientific fields have run into this issue, and the answer that they've all come up with is to standardise.
+\item Standards allow the representation of data and models in specific, agreed formats.
+\item Once a standard is agreed upon, everyone can target it---tools, representations, utilities.
+\item If one knows what the data is going to look like, one can then develop tools and APIs around it.
+\item And instead of everyone writing a tool for their own standard, every tool anyone writes for the one standard can be used with everyone's data.
 }
 %\section{NeuroML}
 \begin{frame}[c]
-  \frametitle{NeuroML}
+  \frametitle{NeuroML ecosystem supports all stages of the model cycle}
   \begin{itemize}
-    \item Introduction to NeuroML.
+    \item standard/specification
+    \item software ecosystem
   \end{itemize}
 \end{frame}
 \begin{frame}[c]
-  \frametitle{NeuroML: scope}
-  \begin{itemize}
-    \item Figure 2 from paper
-  \end{itemize}
+  \frametitle{NeuroML ecosystem supports all stages of the model cycle}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{99_images/ecosystem}
+  \end{figure}
+\end{frame}
+\begin{frame}[c]
+  \frametitle{NeuroML provides a set of curated model elements}
+    %\include{99_images/neuroml-schema-mindmap}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{99_images/neuroml-mindmap}
+  \end{figure}%
+\end{frame}
+\begin{frame}[c]
+  \frametitle{NeuroML is a modular, structured and hierarchical language}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.7\textwidth]{99_images/membrane2}
+      \end{figure}%
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.7\textwidth,angle=-90]{99_images/HL23PYR-red}
+        \includegraphics[width=0.7\textwidth,angle=-90]{99_images/HL23PV}\\\vspace{0.5cm}
+      \end{figure}%
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.7\textwidth]{99_images/20231004-HL23Net}
+      \end{figure}%
+    \end{column}
+  \end{columns}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{99_images/lego}
+  \end{figure}%
 \end{frame}
 \begin{frame}[c]
   \frametitle{NeuroML: software ecosystem}
-  \begin{itemize}
-    \item Figure 3
-  \end{itemize}
+\begin{figure}[t]
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{99_images/ecosystem-onion}
+  \end{figure}%
+\end{figure}
 \end{frame}
 \begin{frame}[c]
   \frametitle{NeuroML: software ecosystem: core tools}
@@ -320,4 +431,14 @@
     \item GSoC, Outreachy, good computer science students
   \end{itemize}
 \end{frame}
+\begin{frame}[c]
+  \frametitle{But, too many standards?}
+  \begin{itemize}
+    \item XKCD here.
+  \end{itemize}
+\end{frame}
+\note[enumerate]{%
+\item In neuroscience, we're fortunate enough to not have the issue of having too many standards.
+\item There are only a few standards in biophysically detailed modelling, and as we'll see, we ensure that these few remain interoperable.
+}
 \end{document}
