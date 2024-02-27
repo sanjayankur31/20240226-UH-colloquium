@@ -231,15 +231,26 @@
   \begin{itemize}
     \item many specialist tools:
       \begin{itemize}
-        \item \alert{simulation:} NEURON, NEST, Brian, GENESIS, MOOSE, STEPS, ANNarchy, TVB, LFPy, NeuroLib, EDEN, Arbor, NetPyNE
-        \item \alert{fitting:} BluePyOpt, NeuroTune, SciUnit
+        \item NEURON, NEST, Brian, GENESIS, MOOSE, STEPS, ANNarchy, TVB, LFPy, NeuroLib, EDEN, Arbor, NetPyNE\ldots{}
       \end{itemize}
     \item<2-> but:
       \begin{itemize}
-        \item<2-> different APIs, syntax
-        \item<2-> not well defined model descriptions
-        \item<2-> custom machine readable internal representations
-        \item<2-> ad-hoc utilities
+        \item<2-> different APIs, syntax:
+          \begin{itemize}
+            \item<2-> increased difficulty for users
+          \end{itemize}
+        \item<3-> not well defined model descriptions:
+          \begin{itemize}
+            \item<3-> models cannot be validated
+          \end{itemize}
+        \item<4-> custom machine readable internal representations:
+          \begin{itemize}
+            \item<4-> cannot be easily inspected/analysed
+          \end{itemize}
+        \item<5-> ad-hoc utilities:
+          \begin{itemize}
+            \item<5->  cannot be used with all tools
+          \end{itemize}
       \end{itemize}
   \end{itemize}
 \end{frame}
@@ -252,7 +263,7 @@
 \begin{frame}[c]
   \frametitle{}
   \begin{center}
-  \Large{Makes computational neuroscience \alert{not FAIR (Findable, Accessible, Interoperable, Reusable)}}
+  \Large{Makes computational neuroscience models\\\emph{less}\\\alert{FAIR}\\\alert{(Findable, Accessible, Interoperable, Reusable)}}
   \end{center}
 \end{frame}
 \note[enumerate]{%
@@ -276,10 +287,10 @@
     \begin{column}{0.5\textwidth}
       \begin{figure}[h]
         \centering
+        \includegraphics[width=0.35\textwidth]{99_images/neuroml-logo}\\\vspace{0.5cm}
         \includegraphics[width=0.35\textwidth]{99_images/NWB}\\\vspace{0.2cm}
         \includegraphics[width=0.35\textwidth]{99_images/sbml}\\\vspace{0.2cm}
-        \includegraphics[width=0.35\textwidth]{99_images/sedml}\\\vspace{0.4cm}
-        \includegraphics[width=0.35\textwidth]{99_images/neuroml-logo}
+        \includegraphics[width=0.35\textwidth]{99_images/sedml}
       \end{figure}%
     \end{column}}
   \end{columns}
@@ -297,18 +308,214 @@
 %\section{NeuroML}
 \begin{frame}[c]
   \frametitle{NeuroML ecosystem supports all stages of the model cycle}
-  \begin{itemize}
-    \item standard/specification
-    \item software ecosystem
-  \end{itemize}
-\end{frame}
-\begin{frame}[c]
-  \frametitle{NeuroML ecosystem supports all stages of the model cycle}
   \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{99_images/ecosystem}
   \end{figure}
 \end{frame}
+\note[enumerate]{%
+\item The idea being that by being the standard, various tools that support various stages of the model life cycle can then work together.
+}
+\begin{frame}[c]
+  \frametitle{NeuroML ecosystem}
+  \begin{itemize}
+    \item standard/specification
+    \item software ecosystem
+  \end{itemize}
+\end{frame}
+\note[enumerate]{%
+\item It consists of two components. The specification or the standard, and the software that adhere to this specification.
+}
+\begin{frame}[t]
+  \frametitle{NeuroML schema/standard}
+    Model specification (XSD)
+    \begin{itemize}
+      \item elements
+      \item attributes
+      \item hierarchical relationships
+    \end{itemize}
+  \uncover<2>{%
+    Dynamics (LEMS)
+    \begin{itemize}
+      \item dynamical behaviour
+    \end{itemize}}
+\end{frame}
+\note[enumerate]{%
+\item The standard itself has two different components.
+\item There's the schema, which formally specifies the model description---what elements, attributes are valid, and how they related to each other.
+\item The next is the LEMS description of the model---the dynamics. We call this the Component type declaration.
+}
+\begin{frame}[c]
+  \frametitle{NeuroML schema/standard: XSD}
+    Way of specifying the structure of an XML document.
+    \begin{itemize}
+      \item allows defining \alert{types} and \alert{extensions/restrictions} on types to create new types.
+    \end{itemize}
+    \pause{}
+    One can validate a model description against the schema \alert{before simulation}
+    \footnotetext[1]{\url{https://www.w3.org/TR/xmlschema-1/}}
+\end{frame}
+\note[enumerate]{%
+\item That's it. We'll see an example now.
+}
+\begin{frame}[fragile,c]
+  \frametitle{NeuroML schema/standard: specification: XSD}
+  \begin{center}
+    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
+<xs:simpleType name="Nml2Quantity_voltage"> <!-- For params with dimension voltage -->
+  <xs:restriction base="xs:string">
+    <xs:pattern value="-?([0-9]*(\.[0-9]+)?)([eE]-?[0-9]+)?[\s]*(V|mV)"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="Izhikevich2007Cell">
+  <xs:annotation>
+    <xs:documentation>Cell based on ...>
+    </xs:documentation>
+  </xs:annotation>
+  <xs:complexContent>
+    <xs:extension base="BaseCellMembPotCap">
+      <xs:attribute name="v0" type="Nml2Quantity_voltage" use="required"/>
+      <xs:attribute name="k" type="Nml2Quantity_conductancePerVoltage" use="required"/>
+      <xs:attribute name="vr" type="Nml2Quantity_voltage" use="required"/>
+      <xs:attribute name="vt" type="Nml2Quantity_voltage" use="required"/>
+      <xs:attribute name="vpeak" type="Nml2Quantity_voltage" use="required"/>
+      <xs:attribute name="a" type="Nml2Quantity_pertime" use="required"/>
+      <xs:attribute name="b" type="Nml2Quantity_conductance" use="required"/>
+      <xs:attribute name="c" type="Nml2Quantity_voltage" use="required"/>
+      <xs:attribute name="d" type="Nml2Quantity_current" use="required"/>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+    \end{minted}
+  \end{center}
+\end{frame}
+\note[enumerate]{%
+\item The schema is defined as an XSD: XML schema document that formally defines what an XML file can look like.
+\item In this example, of a simple cell model, the Izhikevich model, this lists what its attributes are.
+\item In programming jargon, we're defining the structure of the class---what parameters/attributes can an instance/object of class contain.
+}
+\begin{frame}[t]
+  \frametitle{NeuroML schema/standard: LEMS}
+    Low Entropy Model Specification language
+    \begin{itemize}
+      \item domain independent
+      \item machine readable
+      \item allows creation of "Component Types" \alert{(classes)} from which "Components" \alert{(objects)} can be instantiated by providing the necessary parameters
+      \item provides a reference implementation/simulator
+        \pause{}
+      \item but is not aware of the cable equation (required for multi-compartmental neuron models)
+    \end{itemize}
+    \footnotetext[1]{\fullcite{Cannon2014}}
+\end{frame}
+\note[enumerate]{%
+\item The next is the LEMS description of the model---the dynamics. We call this the Component type declaration.
+}
+\begin{frame}[fragile,c]
+  \frametitle{NeuroML schema/standard: dynamics (LEMS)}
+  \begin{center}
+    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
+    <ComponentType name="izhikevich2007Cell" extends="baseCellMembPotCap"
+        description="Cell based ...">
+
+        <Parameter name="v0" dimension="voltage" description="Initial membrane potential"/>
+
+        <!--
+        Defined in baseCellMembPotCap:
+        <Parameter name="C" dimension="capacitance"/>
+        -->
+        <Parameter name="k" dimension="conductance_per_voltage"/>
+
+        <Parameter name="vr" dimension="voltage" description="Resting membrane potential"/>
+        <Parameter name="vt" dimension="voltage" description="Spike threshold"/>
+        <Parameter name="vpeak" dimension="voltage" description="Peak action potential value"/>
+
+        <Parameter name="a" dimension="per_time" description="Time scale of recovery variable u"/>
+        <Parameter name="b" dimension="conductance" description="Sensitivity of recovery variable u to subthreshold fluctuations of membrane potential v"/>
+        <Parameter name="c" dimension="voltage" description="After-spike reset value of v"/>
+        <Parameter name="d" dimension="current" description="After-spike increase to u"/>
+
+        <Attachments name="synapses" type="basePointCurrent"/>
+
+        <Exposure name="u" dimension="current" description="Membrane recovery variable"/>
+
+        <Dynamics><!-- snipped --></Dynamics>
+
+    </ComponentType>
+    \end{minted}
+  \end{center}
+\end{frame}
+\note[enumerate]{%
+\item Here is the LEMS component type definition, without the dynamics for the moment.
+\item What you'll notice is that a lot of it is very similar to the XSD definition.
+}
+\begin{frame}[fragile,c]
+  \frametitle{NeuroML schema/standard: XSD and LEMS}
+  \begin{center}
+    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
+      <xs:attribute name="v0" type="Nml2Quantity_voltage" use="required"/>
+      <xs:attribute name="k" type="Nml2Quantity_conductancePerVoltage" use="required"/>
+      <xs:attribute name="vr" type="Nml2Quantity_voltage" use="required"/>
+      <xs:attribute name="vt" type="Nml2Quantity_voltage" use="required"/>
+      <xs:attribute name="vpeak" type="Nml2Quantity_voltage" use="required"/>
+      <xs:attribute name="a" type="Nml2Quantity_pertime" use="required"/>
+      <xs:attribute name="b" type="Nml2Quantity_conductance" use="required"/>
+      <xs:attribute name="c" type="Nml2Quantity_voltage" use="required"/>
+      <xs:attribute name="d" type="Nml2Quantity_current" use="required"/>
+    \end{minted}
+    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
+        <Parameter name="v0" dimension="voltage" description="Initial membrane potential"/>
+        <Parameter name="k" dimension="conductance_per_voltage"/>
+        <Parameter name="vr" dimension="voltage" description="Resting membrane potential"/>
+        <Parameter name="vt" dimension="voltage" description="Spike threshold"/>
+        <Parameter name="vpeak" dimension="voltage" description="Peak action potential value"/>
+        <Parameter name="a" dimension="per_time" description="Time scale of recovery variable u"/>
+        <Parameter name="b" dimension="conductance" description="Sensitivity of recovery variable u to subthreshold fluctuations of membrane potential v"/>
+        <Parameter name="c" dimension="voltage" description="After-spike reset value of v"/>
+        <Parameter name="d" dimension="current" description="After-spike increase to u"/>
+    \end{minted}
+  \end{center}
+\end{frame}
+\note[enumerate]{%
+\item I've written the attributes/parameters together here so you can see that there's a one-to-one correspondence between the two model descriptions.
+}
+\begin{frame}[fragile,c]
+  \frametitle{NeuroML schema/standard: dynamics (LEMS)}
+  \begin{center}
+    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
+    <ComponentType name="izhikevich2007Cell" extends="baseCellMembPotCap"
+        description="Cell based ...">
+        <!-- snipped -->
+        <Dynamics>
+            <StateVariable name="v" dimension="voltage" exposure="v"/>
+            <StateVariable name="u" dimension="current" exposure="u"/>
+
+            <DerivedVariable name="iSyn"  dimension="current" exposure="iSyn" select="synapses[*]/i" reduce="add" />
+
+            <DerivedVariable name="iMemb" dimension="current" exposure="iMemb" value="k * (v-vr) * (v-vt) + iSyn - u"/>
+
+            <TimeDerivative variable="v" value="iMemb / C"/>
+            <TimeDerivative variable="u" value="a * (b * (v-vr) - u)"/>
+
+            <OnStart>
+                <StateAssignment variable="v" value="v0"/>
+                <StateAssignment variable="u" value="0"/>
+            </OnStart>
+
+            <OnCondition test="v .gt. vpeak">
+                <StateAssignment variable="v" value="c"/>
+                <StateAssignment variable="u" value="u + d"/>
+                <EventOut port="spike"/>
+            </OnCondition>
+
+        </Dynamics>
+    </ComponentType>
+    \end{minted}
+  \end{center}
+\end{frame}
+\note[enumerate]{%
+\item Now, this isn't a problem unique to computational neuroscience, or even neuroscience.
+}
 \begin{frame}[c]
   \frametitle{NeuroML provides a set of curated model elements}
     %\include{99_images/neuroml-schema-mindmap}
@@ -317,26 +524,32 @@
     \includegraphics[width=0.9\textwidth]{99_images/neuroml-mindmap}
   \end{figure}%
 \end{frame}
+\note[enumerate]{%
+\item Now, this isn't a problem unique to computational neuroscience, or even neuroscience.
+}
 \begin{frame}[c]
-  \frametitle{NeuroML is a modular, structured and hierarchical language}
+  \frametitle{NeuroML is modular, structured and hierarchical}
   \begin{columns}
     \begin{column}{0.3\textwidth}
       \begin{figure}[h]
         \centering
-        \includegraphics[width=0.7\textwidth]{99_images/membrane2}
+        Conductances\\
+        \includegraphics[width=0.7\textwidth]{99_images/membrane2}\\\vspace{0.2cm}
       \end{figure}%
     \end{column}
     \begin{column}{0.3\textwidth}
       \begin{figure}[h]
         \centering
+        Cells\\\vspace{-0.5cm}
         \includegraphics[width=0.7\textwidth,angle=-90]{99_images/HL23PYR-red}
-        \includegraphics[width=0.7\textwidth,angle=-90]{99_images/HL23PV}\\\vspace{0.5cm}
+        \includegraphics[width=0.7\textwidth,angle=-90]{99_images/HL23PV}
       \end{figure}%
     \end{column}
     \begin{column}{0.3\textwidth}
       \begin{figure}[h]
         \centering
-        \includegraphics[width=0.7\textwidth]{99_images/20231004-HL23Net}
+        Networks\\
+        \includegraphics[width=0.7\textwidth]{99_images/20231004-HL23Net}\\\vspace{0.2cm}
       \end{figure}%
     \end{column}
   \end{columns}
@@ -402,21 +615,9 @@
 \end{frame}
 %\section{Under the hood}
 \begin{frame}[c]
-  \frametitle{NeuroML: the standard}
-  \begin{itemize}
-    \item Schema, component types
-  \end{itemize}
-\end{frame}
-\begin{frame}[c]
   \frametitle{NeuroML: the APIs}
   \begin{itemize}
     \item Python API
-  \end{itemize}
-\end{frame}
-\begin{frame}[c]
-  \frametitle{NeuroML: LEMS}
-  \begin{itemize}
-    \item LEMS, advantages
   \end{itemize}
 \end{frame}
 \begin{frame}[c]
