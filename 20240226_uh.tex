@@ -148,23 +148,16 @@
       \end{itemize}
     \end{column}
   \end{columns}
+  \note[item]{The most recent estimate puts the number of neurons in the human brain at 86B.}
   \vspace{0.2cm}
   \footnotetext[1]{{\tiny{\fullcite{HerculanoHouzel2009}}}}
   \footnotetext[1]{{\tiny{\fullcite{Bartheld2016}}}}
 \end{frame}
-\note[enumerate]{%
-  \item The most recent estimate puts the number of neurons in the human brain at 86B.
-  \item Experiments provide us with direct information.
-  \item They study the brain at different levels.
-  \item There's no right level. It depends on the question being investigated.
-}
 \begin{frame}[c]
   \frametitle{Experiments provide a window into the brain}
   Multiple scales of experiments/data sources go here
+\note[item]{There is so much data out there now, as we embrace Open Science.}
 \end{frame}
-\note[enumerate]{%
-  \item There is so much data out there now, as we embrace Open Science.
-}
 \begin{frame}[c]
   \frametitle{Models test \& unify experimental results; generate hypotheses}
   \begin{columns}
@@ -184,48 +177,37 @@
       \end{figure}%
     \end{column}}
   \end{columns}
+  \note[item]{Models/theory are necessary for:}
+  \note[item]{combining independent experimental results into unified theories}
+  \note[item]{exploring these complex systems across wider range of conditions}
+  \note[item]{generating new testable hypotheses}
+  \note[item]{RNNs are appropriate for lots of projects, for example.}
+  \note[item]{So are whole brain neural mass models.}
+  \note[item]{But, to really understand the underlying mechanisms that give rise to emergent behaviour, we must model the brain at biophysically detailed levels.}
   \footnotetext[1]{\fullcite{Murray2019}}
   \footnotetext[1]{\fullcite{Schirner2023}}
   \footnotetext[1]{\fullcite{Yao2022}}
   \footnotetext[1]{\fullcite{MaekiMarttunen2020}}
 \end{frame}
-\note[enumerate]{%
-\item There is so much data out there now, as we embrace Open Science.
-\item Models/theory are necessary for:
-\item combining independent experimental results into unified theories
-\item exploring these complex systems across wider range of conditions
-\item generating new testable hypotheses
-\item RNNs are appropriate for lots of projects, for example.
-\item So are whole brain neural mass models.
-\item But, to really understand the underlying mechanisms that give rise to emergent behaviour, we must model the brain at biophysically detailed levels.
-}
 \begin{frame}[c]
 \frametitle{}
 \begin{center}
 \Large{A \alert{\emph{mechanistic}} understanding of the brain requires \alert{biophysically detailed} modelling}
 \end{center}
 \end{frame}
-\note[enumerate]{%
-\item The figure shows a simplified model life cycle. Can be much more complex in practice.
-\item Lots of tools out there for each step.
-\item But there's are issues---fragmentation, lack of interoperability, so many APIs.
-}
 \begin{frame}[c]
   \frametitle{The model life cycle}
-      \begin{figure}[h]
-        \centering
-        \includegraphics[width=\textwidth]{99_images/ecosystem-no-neuroml}
-      \end{figure}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{99_images/ecosystem-no-neuroml}
+  \end{figure}
+\note[item]{Ideally, what we want is for all the stages to be connected seamlessly, but this is not true in practice.}
+\note[item]{We create our model, ideally re-using already published components.}
+\note[item]{Then before we simulate our model, we want to validate it in some way.}
+\note[item]{We also want to analyse and visualise our model description before.}
+\note[item]{Then we iteratively simulate and fit our model to data, or to produce a certain behaviour.}
+\note[item]{Finally, we want to publish and openly share the model so others can use it in the future.}
 \end{frame}
-\note[enumerate]{%
-\item The figure shows a simplified model life cycle. Can be much more complex in practice.
-\item Ideally, what we want is for all the stages to be connected seamlessly, but this is not true in practice.
-\item We create our model, ideally re-using already published components.
-\item Then before we simulate our model, we want to validate it in some way.
-\item We also want to analyse and visualise our model description before.
-\item Then we iteratively simulate and fit our model to data, or to produce a certain behaviour.
-\item Finally, we want to publish and openly share the model so others can use it in the future.
-}
 \begin{frame}[c]
   \frametitle{Computational modelling software ecosystem is fragmented}
   \begin{itemize}
@@ -253,25 +235,21 @@
           \end{itemize}
       \end{itemize}
   \end{itemize}
+\note[item]{There are a lot of software tools out there for users to pick from, for different levels of modelling, optimisation, analysis.}
+\note[item]{For each stage.}
+\note[item]{But, they aren't designed to work together.}
+\note[item]{They have their own designs, their own APIs, syntax, model representation, and usually their own suite of custom utilities to work with their model representation.}
 \end{frame}
-\note[enumerate]{%
-\item There are a lot of software tools out there for users to pick from, for different levels of modelling, optimisation, analysis.
-\item For each stage.
-\item But, they aren't designed to work together.
-\item They have their own designs, their own APIs, syntax, model representation, and usually their own suite of custom utilities to work with their model representation.
-}
 \begin{frame}[c]
   \frametitle{}
   \begin{center}
   \Large{Makes computational neuroscience models\\\emph{less}\\\alert{FAIR}\\\alert{(Findable, Accessible, Interoperable, Reusable)}}
   \end{center}
+\note[item]{This means that for example, a model written in simulator A, say NEURON, cannot just be re-used in another simulator.}
+\note[item]{In fact, because a majority of these tools do not have a well defined model description, even re-using models developed in the same simulator can be quite hard.}
+\note[item]{It takes a lot of human resources to translate/convert models to be able to re-use them.}
+\note[item]{It also makes it very hard to study or analyse these models.}
 \end{frame}
-\note[enumerate]{%
-\item This means that for example, a model written in simulator A, say NEURON, cannot just be re-used in another simulator.
-\item In fact, because a majority of these tools do not have a well defined model description, even re-using models developed in the same simulator can be quite hard.
-\item It takes a lot of human resources to translate/convert models to be able to re-use them.
-\item It also makes it very hard to study or analyse these models.
-}
 \begin{frame}[c]
   \frametitle{Standards enable FAIR neuroscience}
   \begin{columns}
@@ -296,15 +274,13 @@
   \end{columns}
   \footnotetext[1]{\fullcite{Abrams2022}: \url{https://incf.org}}
   \footnotetext[1]{COmputational Modeling in BIology NEtwork (COMBINE): \url{https://co.mbine.org/}}
+\note[item]{Now, this isn't a problem unique to computational neuroscience, or even neuroscience.}
+\note[item]{Multiple scientific fields have run into this issue, and the answer that they've all come up with is to standardise.}
+\note[item]{Standards allow the representation of data and models in specific, agreed formats.}
+\note[item]{Once a standard is agreed upon, everyone can target it---tools, representations, utilities.}
+\note[item]{If one knows what the data is going to look like, one can then develop tools and APIs around it.}
+\note[item]{And instead of everyone writing a tool for their own standard, every tool anyone writes for the one standard can be used with everyone's data.}
 \end{frame}
-\note[enumerate]{%
-\item Now, this isn't a problem unique to computational neuroscience, or even neuroscience.
-\item Multiple scientific fields have run into this issue, and the answer that they've all come up with is to standardise.
-\item Standards allow the representation of data and models in specific, agreed formats.
-\item Once a standard is agreed upon, everyone can target it---tools, representations, utilities.
-\item If one knows what the data is going to look like, one can then develop tools and APIs around it.
-\item And instead of everyone writing a tool for their own standard, every tool anyone writes for the one standard can be used with everyone's data.
-}
 %\section{NeuroML}
 \begin{frame}[c]
   \frametitle{NeuroML ecosystem supports all stages of the model cycle}
@@ -312,23 +288,19 @@
     \centering
     \includegraphics[width=\textwidth]{99_images/ecosystem}
   \end{figure}
+\note[item]{The idea being that by being the standard, various tools that support various stages of the model life cycle can then work together.}
 \end{frame}
-\note[enumerate]{%
-\item The idea being that by being the standard, various tools that support various stages of the model life cycle can then work together.
-}
 \begin{frame}[c]
   \frametitle{NeuroML ecosystem}
   \begin{itemize}
     \item standard/specification
     \item software ecosystem
   \end{itemize}
+\note[item]{It consists of two components. The specification or the standard, and the software that adhere to this specification.}
 \end{frame}
-\note[enumerate]{%
-\item It consists of two components. The specification or the standard, and the software that adhere to this specification.
-}
 \begin{frame}[t]
-  \frametitle{NeuroML schema/standard}
-    Model specification (XSD)
+  \frametitle{NeuroML standard}
+    Model specification (schema: XSD)
     \begin{itemize}
       \item elements
       \item attributes
@@ -339,27 +311,24 @@
     \begin{itemize}
       \item dynamical behaviour
     \end{itemize}}
+\note[item]{The standard itself has two different components.}
+\note[item]{There's the schema, which formally specifies the model description---what elements, attributes are valid, and how they related to each other.}
+\note[item]{The next is the LEMS description of the model---the dynamics. We call this the Component type declaration.}
 \end{frame}
-\note[enumerate]{%
-\item The standard itself has two different components.
-\item There's the schema, which formally specifies the model description---what elements, attributes are valid, and how they related to each other.
-\item The next is the LEMS description of the model---the dynamics. We call this the Component type declaration.
-}
 \begin{frame}[c]
-  \frametitle{NeuroML schema/standard: XSD}
+  \frametitle{NeuroML standard: schema: XSD}
     Way of specifying the structure of an XML document.
     \begin{itemize}
       \item allows defining \alert{types} and \alert{extensions/restrictions} on types to create new types.
+      \item allows generation of \alert{API}s
     \end{itemize}
     \pause{}
     One can validate a model description against the schema \alert{before simulation}
     \footnotetext[1]{\url{https://www.w3.org/TR/xmlschema-1/}}
+\note[item]{That's it. We'll see an example now.}
 \end{frame}
-\note[enumerate]{%
-\item That's it. We'll see an example now.
-}
 \begin{frame}[fragile,c]
-  \frametitle{NeuroML schema/standard: specification: XSD}
+  \frametitle{NeuroML standard: schema: XSD}
   \begin{center}
     \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
 <xs:simpleType name="Nml2Quantity_voltage"> <!-- For params with dimension voltage -->
@@ -389,30 +358,25 @@
 </xs:complexType>
     \end{minted}
   \end{center}
+  \footnotetext[1]{\fullcite{Izhikevich2007}}
+\note[item]{The schema is defined as an XSD: XML schema document that formally defines what an XML file can look like.}
+\note[item]{In this example, of a simple cell model, the Izhikevich model, this lists what its attributes are.}
+\note[item]{In programming jargon, we're defining the structure of the class---what parameters/attributes can an instance/object of class contain.}
 \end{frame}
-\note[enumerate]{%
-\item The schema is defined as an XSD: XML schema document that formally defines what an XML file can look like.
-\item In this example, of a simple cell model, the Izhikevich model, this lists what its attributes are.
-\item In programming jargon, we're defining the structure of the class---what parameters/attributes can an instance/object of class contain.
-}
 \begin{frame}[t]
-  \frametitle{NeuroML schema/standard: LEMS}
-    Low Entropy Model Specification language
+  \frametitle{NeuroML standard: LEMS}
+  \alert{L}ow \alert{E}ntropy \alert{M}odel \alert{S}pecification language
     \begin{itemize}
       \item domain independent
       \item machine readable
       \item allows creation of "Component Types" \alert{(classes)} from which "Components" \alert{(objects)} can be instantiated by providing the necessary parameters
-      \item provides a reference implementation/simulator
-        \pause{}
-      \item but is not aware of the cable equation (required for multi-compartmental neuron models)
+      \item provides a \alert{reference implementation/simulator}
     \end{itemize}
     \footnotetext[1]{\fullcite{Cannon2014}}
+\note[item]{The next is the LEMS description of the model---the dynamics. We call this the Component type declaration.}
 \end{frame}
-\note[enumerate]{%
-\item The next is the LEMS description of the model---the dynamics. We call this the Component type declaration.
-}
 \begin{frame}[fragile,c]
-  \frametitle{NeuroML schema/standard: dynamics (LEMS)}
+  \frametitle{NeuroML standard: dynamics (LEMS)}
   \begin{center}
     \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
     <ComponentType name="izhikevich2007Cell" extends="baseCellMembPotCap"
@@ -444,13 +408,12 @@
     </ComponentType>
     \end{minted}
   \end{center}
+\note[item]{Here is the LEMS component type definition, without the dynamics for the moment.}
+\note[item]{What you'll notice is that a lot of it is very similar to the XSD definition.}
 \end{frame}
-\note[enumerate]{%
-\item Here is the LEMS component type definition, without the dynamics for the moment.
-\item What you'll notice is that a lot of it is very similar to the XSD definition.
-}
 \begin{frame}[fragile,c]
-  \frametitle{NeuroML schema/standard: XSD and LEMS}
+  \frametitle{NeuroML standard: XSD and LEMS}
+  XSD:
   \begin{center}
     \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
       <xs:attribute name="v0" type="Nml2Quantity_voltage" use="required"/>
@@ -463,6 +426,9 @@
       <xs:attribute name="c" type="Nml2Quantity_voltage" use="required"/>
       <xs:attribute name="d" type="Nml2Quantity_current" use="required"/>
     \end{minted}
+  \end{center}
+  LEMS:
+  \begin{center}
     \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
         <Parameter name="v0" dimension="voltage" description="Initial membrane potential"/>
         <Parameter name="k" dimension="conductance_per_voltage"/>
@@ -475,17 +441,19 @@
         <Parameter name="d" dimension="current" description="After-spike increase to u"/>
     \end{minted}
   \end{center}
+\note[item]{I've written the attributes/parameters together here so you can see that there's a one-to-one correspondence between the two model descriptions.}
 \end{frame}
-\note[enumerate]{%
-\item I've written the attributes/parameters together here so you can see that there's a one-to-one correspondence between the two model descriptions.
-}
 \begin{frame}[fragile,c]
-  \frametitle{NeuroML schema/standard: dynamics (LEMS)}
+  \frametitle{NeuroML standard: dynamics (LEMS)}
   \begin{center}
     \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
     <ComponentType name="izhikevich2007Cell" extends="baseCellMembPotCap"
         description="Cell based ...">
         <!-- snipped -->
+        <Attachments name="synapses" type="basePointCurrent"/>
+
+        <Exposure name="u" dimension="current" description="Membrane recovery variable"/>
+
         <Dynamics>
             <StateVariable name="v" dimension="voltage" exposure="v"/>
             <StateVariable name="u" dimension="current" exposure="u"/>
@@ -512,23 +480,12 @@
     </ComponentType>
     \end{minted}
   \end{center}
+\note[item]{This now shows the dynamics of the component type.}
+\note[item]{It include information on how the states and time derivatives change, how the various variables interact.}
+\note[item]{This information is sufficient to then be able to create an object of this type and to simulate it.}
 \end{frame}
-\note[enumerate]{%
-\item Now, this isn't a problem unique to computational neuroscience, or even neuroscience.
-}
 \begin{frame}[c]
-  \frametitle{NeuroML provides a set of curated model elements}
-    %\include{99_images/neuroml-schema-mindmap}
-  \begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\textwidth]{99_images/neuroml-mindmap}
-  \end{figure}%
-\end{frame}
-\note[enumerate]{%
-\item Now, this isn't a problem unique to computational neuroscience, or even neuroscience.
-}
-\begin{frame}[c]
-  \frametitle{NeuroML is modular, structured and hierarchical}
+  \frametitle{NeuroML is modular, structured, and hierarchical}
   \begin{columns}
     \begin{column}{0.3\textwidth}
       \begin{figure}[h]
@@ -557,42 +514,114 @@
     \centering
     \includegraphics[width=0.9\textwidth]{99_images/lego}
   \end{figure}%
+\note[item]{Hopefully this gives you an idea of how NeuroML is modular, structured, and hierarchical by design.}
+\note[item]{So, we like to think of it building blocks, and since the relationships between blocks is well defined, the blocks can be easily re-used and combined to create new ones.}
+\note[item]{So, there are three conductances here, for example---using the same three HH type gates.}
+\note[item]{These conductances can be used in different cells---here two cells with different morphologies.}
+\note[item]{The cells can then be used in populations to create a network, and so on.}
 \end{frame}
 \begin{frame}[c]
-  \frametitle{NeuroML: software ecosystem}
-\begin{figure}[t]
+  \frametitle{NeuroML provides users with a set of curated model elements}
   \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{99_images/ecosystem-onion}
+    \includegraphics[width=0.9\textwidth]{99_images/neuroml-mindmap}
   \end{figure}%
-\end{figure}
+  \footnotetext[1]{Full standard is at:~\url{https://docs.neuroml.org/Userdocs/Specification.html}}
+\note[item]{An important aspect of the standard is that it includes lots of commonly used model elements already.}
+\note[item]{So that users don't have to write these themselves, they can use the ones already provided.}
+\note[item]{The mind map shows you a sub-set of model elements included in the NeuroML standard.}
 \end{frame}
 \begin{frame}[c]
-  \frametitle{NeuroML: software ecosystem: core tools}
-  \begin{itemize}
-    \item Figure 4
-  \end{itemize}
+  \frametitle{NeuroML software ecosystem}
+  \begin{figure}[t]
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=0.9\textwidth]{99_images/ecosystem-onion}
+    \end{figure}%
+  \end{figure}
+\note[item]{An important aspect of the standard is that it includes lots of commonly used model elements already.}
+\note[item]{So that users don't have to write these themselves, they can use the ones already provided.}
+\note[item]{The mind map shows you a sub-set of model elements included in the NeuroML standard.}
+\end{frame}
+\begin{frame}[c]
+  \frametitle{NeuroML software ecosystem: core tools}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{99_images/software.png}
+  \end{figure}
+  \note[item]{These tools form the core NeuroML tools---ones that the NeuroML Editors, we develop and maintain}
+  \note[item]{These provide the basic APIs required to work with NeuroML models---to create them, to read, write, and modify them}
+  \note[item]{PyNeuroML is the suggested tool for use---we don't want people writing XML.}
+\end{frame}
+\begin{frame}[fragile,c]
+  \frametitle{NeuroML: create models}
+  Python script to create a new network, and validate it:
+    \begin{minted}[breaklines=true,fontsize=\Tiny,breaksymbolleft={},breakindentnchars=4,autogobble]{python}
+    from neuroml import * # NeuroML API libNeuroML
+
+    newdoc = NeuroMLDocument(id="new_doc")
+    newcell = IafTauCell(id="cell_0", leak_reversal="-60mV", thresh="0mV", tau="5ms", reset="-70mV")
+    newdoc.add(newcell)
+
+    network = newdoc.add(Network, id="new_net", validate=False)
+    population = network.add(Population, id="new_pop", size=10, component=newcell.id)
+
+    # Helper method to ensure all parameters
+    # present and appropriate
+    newdoc.validate(recursive=True)
+    \end{minted}
+    Resultant NeuroML XML serialization:
+    \begin{minted}[breaklines=true,fontsize=\Tiny,breaksymbolleft={},breakindentnchars=4,autogobble]{xml}
+<neuroml id="new_doc">
+  <iafTauCell id="cell_0" leakReversal="-60mV" thresh="0mV" reset="-70mV" tau="5ms"/>
+  <network id="new_net">
+      <population id="new_pop" component="cell_0" size="10"/>
+  </network>
+</neuroml>
+    \end{minted}
+    \note[item]{Now, we do not want users to write XML at all}
+    \note[item]{The Python API is generated from the schema, and one can use this to write models.}
 \end{frame}
 \begin{frame}[c]
   \frametitle{NeuroML: create models}
-  \begin{itemize}
-    \item Figure 5
-    \item Code example
-  \end{itemize}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{99_images/create-translate-schematic}
+  \end{figure}
+  \note[item]{Once a model has been created, it is stored in its NeuroML/LEMS XML form}
+  \note[item]{Because LEMS is formally defined and machine readable, this can now be easily converted into any other require format}
+  \note[item]{The different simulators support NeuroML in different ways}
+  \note[item]{For example, for NEURON, we generate NEURON scripts}
+  \note[item]{But NetPyNE imports NeuroML to convert it into its own internal format}
+  \note[item]{The advantage here is that simulator developers are free to choose how they want to support NeuroML}
 \end{frame}
 \begin{frame}[c]
   \frametitle{NeuroML: validate models}
-  \begin{itemize}
-    \item Figure 6
-  \end{itemize}
+  \begin{figure}[h]
+    \only<1>{\includegraphics[width=0.9\textwidth]{99_images/validation-schematic-1}}%
+    \only<2>{\includegraphics[width=0.9\textwidth]{99_images/validation-schematic-2}}%
+    \only<3>{\includegraphics[width=0.9\textwidth]{99_images/validation-schematic}}%
+  \end{figure}
+  \note[item]{We've already touched on validation a little, but let's look at it in more detail}
+  \note[item]{The first level of validation is against the schema---is the model valid, does it have the right structure}
+  \note[item]{Since we have access to the complete model description, we can also run additional global checks---are connections correctly defined, for example?}
+  \note[item]{Once the model has been converted to its expanded LEMS form, we run more checks}
+  \note[item]{Does the model support the requested simulator?}
+  \note[item]{LEMS is dimension aware---so it checks to see if units and dimensions are consistent}
+  \note[item]{We can now simulate the model being fairly confident that it has been defined correctly}
+  \note[item]{We can then run more tests---do we get the same results everywhere? Does it produce the right behaviour?}
 \end{frame}
 \begin{frame}[c]
-  \frametitle{NeuroML: visualise models}
-  \begin{itemize}
-    \item Figure 7
-    \item Figure 8
-    \item Figure 9
-  \end{itemize}
+  \frametitle{NeuroML: visualise/analyse models}
+  \begin{figure}[h]
+    \only<1>{\includegraphics[width=0.9\textwidth]{99_images/20231004-migliore}}%
+    \only<2>{\includegraphics[width=0.9\textwidth]{99_images/20231004-multiscaleisn}}%
+    \only<3>{\includegraphics[width=0.9\textwidth]{99_images/20231004-netpyneui}}%
+    \only<4>{\includegraphics[width=0.31\textwidth,keepaspectratio]{99_images/HL23Network.gv}~~\includegraphics[width=0.6\textwidth,keepaspectratio]{99_images/HL23-con-matrix}}
+  \end{figure}
+  \only<1>{\footnotetext[1]{3D interactive visualisation of \textcite{Migliore2003} using \texttt{pynml-plotmorph}}}
+  \only<2>{\footnotetext[1]{3D interactive visualisation of \textcite{Sadeh2017} on Open Source Brain: \url{https://v1.opensourcebrain.org}}}
+  \only<3>{\footnotetext[1]{3D interactive visualisation using NetPyNE-UI on Open Source Brain v2: \url{https://opensourcebrain.org}}}
 \end{frame}
 \begin{frame}[c]
   \frametitle{NeuroML: simulate models}
@@ -615,12 +644,6 @@
 \end{frame}
 %\section{Under the hood}
 \begin{frame}[c]
-  \frametitle{NeuroML: the APIs}
-  \begin{itemize}
-    \item Python API
-  \end{itemize}
-\end{frame}
-\begin{frame}[c]
   \frametitle{NeuroML: Documentation}
   \begin{itemize}
     \item Jupyterbook
@@ -632,14 +655,19 @@
     \item GSoC, Outreachy, good computer science students
   \end{itemize}
 \end{frame}
+% last slide
 \begin{frame}[c]
-  \frametitle{But, too many standards?}
+  \frametitle{NeuroML: resources}
+  \begin{center}
+    \fullcite{Sinha2023}\\
+    \Large{\url{https://docs.neuroml.org}}
+  \end{center}
+\end{frame}
+% extras
+\begin{frame}[c]
+  \frametitle{NeuroML: the APIs}
   \begin{itemize}
-    \item XKCD here.
+    \item Python API
   \end{itemize}
 \end{frame}
-\note[enumerate]{%
-\item In neuroscience, we're fortunate enough to not have the issue of having too many standards.
-\item There are only a few standards in biophysically detailed modelling, and as we'll see, we ensure that these few remain interoperable.
-}
 \end{document}
