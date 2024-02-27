@@ -148,18 +148,34 @@
       \end{itemize}
     \end{column}
   \end{columns}
-  \note[item]{The most recent estimate puts the number of neurons in the human brain at 86B.}
+  \note[item]{We want to understand how the brain does things}
+  \note[item]{This is important, not only for clinical applications---that is treatment of various brain disorders---but also because we want to understand the various algorithms that allow the brain to process such large amounts of information and react to the environment.}
+  \note[item]{Now, to give you an idea of the size of the challenge: the most recent estimate puts the number of neurons in the human brain at 86B.}
+  \note[item]{These are connected to each other with 100T synapses}
+  \note[item]{Recently, we've also started to understand, rather realise, the importance of support cells---the glia---85B of them.}
   \vspace{0.2cm}
   \footnotetext[1]{{\tiny{\fullcite{HerculanoHouzel2009}}}}
   \footnotetext[1]{{\tiny{\fullcite{Bartheld2016}}}}
 \end{frame}
 \begin{frame}[c]
-  \frametitle{Experiments provide a window into the brain}
-  Multiple scales of experiments/data sources go here
-\note[item]{There is so much data out there now, as we embrace Open Science.}
+  \frametitle{Models complement experimental neuroscience}
+  \pause{}
+  \begin{itemize}
+    \item Combine individual experimental results into \alert{unified theories}
+    \item Explore \alert{generalisability} of experimental results over wider range of conditions
+    \item \alert{Generate} new experimentally testable, physically plausible hypotheses: dictate experiment design
+  \end{itemize}
+  \note[item]{Now, experiments of course, provide us with direct evidence about the brain.}
+  \note[item]{With technology like neuropixels, we are now generating more data on the brain than ever before.}
+  \note[item]{Models/theory are necessary for:}
+  \note[item]{combining independent experimental results into unified theories}
+  \note[item]{exploring these complex systems across wider range of conditions}
+  \note[item]{generating new testable hypotheses}
+  \note[item]{Advantages of models: complete control, complete observability}
 \end{frame}
 \begin{frame}[c]
-  \frametitle{Models test \& unify experimental results; generate hypotheses}
+  \frametitle{Models: different scales}
+  \pause{}
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{figure}[h]
@@ -168,7 +184,7 @@
         \includegraphics[width=0.9\textwidth]{99_images/TVB}\\
       \end{figure}%
     \end{column}
-    \uncover<2>{%
+    \uncover<3>{%
     \begin{column}{0.5\textwidth}
       \begin{figure}[h]
         \centering
@@ -177,17 +193,13 @@
       \end{figure}%
     \end{column}}
   \end{columns}
-  \note[item]{Models/theory are necessary for:}
-  \note[item]{combining independent experimental results into unified theories}
-  \note[item]{exploring these complex systems across wider range of conditions}
-  \note[item]{generating new testable hypotheses}
   \note[item]{RNNs are appropriate for lots of projects, for example.}
   \note[item]{So are whole brain neural mass models.}
   \note[item]{But, to really understand the underlying mechanisms that give rise to emergent behaviour, we must model the brain at biophysically detailed levels.}
-  \footnotetext[1]{\fullcite{Murray2019}}
-  \footnotetext[1]{\fullcite{Schirner2023}}
-  \footnotetext[1]{\fullcite{Yao2022}}
-  \footnotetext[1]{\fullcite{MaekiMarttunen2020}}
+  \only<2->{\footnotetext[1]{\fullcite{Murray2019}}}
+  \only<2->{\footnotetext[1]{\fullcite{Schirner2023}}}
+  \only<2->{\footnotetext[1]{\fullcite{Yao2022}}}
+  \only<2->{\footnotetext[1]{\fullcite{MaekiMarttunen2020}}}
 \end{frame}
 \begin{frame}[c]
 \frametitle{}
@@ -223,7 +235,7 @@
           \end{itemize}
         \item<3-> not well defined model descriptions:
           \begin{itemize}
-            \item<3-> models cannot be validated
+            \item<3-> models cannot be easily validated
           \end{itemize}
         \item<4-> custom machine readable internal representations:
           \begin{itemize}
@@ -307,7 +319,7 @@
       \item hierarchical relationships
     \end{itemize}
   \uncover<2>{%
-    Dynamics (LEMS)
+    Dynamics (LEMS component type definitions)
     \begin{itemize}
       \item dynamical behaviour
     \end{itemize}}
@@ -364,13 +376,14 @@
 \note[item]{In programming jargon, we're defining the structure of the class---what parameters/attributes can an instance/object of class contain.}
 \end{frame}
 \begin{frame}[t]
-  \frametitle{NeuroML standard: LEMS}
+  \frametitle{NeuroML standard: LEMS component type definitions}
   \alert{L}ow \alert{E}ntropy \alert{M}odel \alert{S}pecification language
     \begin{itemize}
       \item domain independent
-      \item machine readable
       \item allows creation of "Component Types" \alert{(classes)} from which "Components" \alert{(objects)} can be instantiated by providing the necessary parameters
       \item provides a \alert{reference implementation/simulator}
+        \pause{}
+      \item machine readable: \alert{translatable} into other formats
     \end{itemize}
     \footnotetext[1]{\fullcite{Cannon2014}}
 \note[item]{The next is the LEMS description of the model---the dynamics. We call this the Component type declaration.}
@@ -485,7 +498,7 @@
 \note[item]{This information is sufficient to then be able to create an object of this type and to simulate it.}
 \end{frame}
 \begin{frame}[c]
-  \frametitle{NeuroML is modular, structured, and hierarchical}
+  \frametitle{NeuroML is declarative, modular, structured, hierarchical}
   \begin{columns}
     \begin{column}{0.3\textwidth}
       \begin{figure}[h]
@@ -549,12 +562,15 @@
     \centering
     \includegraphics[width=0.8\textwidth]{99_images/software.png}
   \end{figure}
+  \begin{center}
+    \texttt{pip install pyneuroml}
+  \end{center}
   \note[item]{These tools form the core NeuroML tools---ones that the NeuroML Editors, we develop and maintain}
   \note[item]{These provide the basic APIs required to work with NeuroML models---to create them, to read, write, and modify them}
   \note[item]{PyNeuroML is the suggested tool for use---we don't want people writing XML.}
 \end{frame}
 \begin{frame}[fragile,c]
-  \frametitle{NeuroML: create models}
+  \frametitle{NeuroML: creating/simulating models}
   Python script to create a new network, and validate it:
     \begin{minted}[breaklines=true,fontsize=\Tiny,breaksymbolleft={},breakindentnchars=4,autogobble]{python}
     from neuroml import * # NeuroML API libNeuroML
@@ -583,7 +599,7 @@
     \note[item]{The Python API is generated from the schema, and one can use this to write models.}
 \end{frame}
 \begin{frame}[c]
-  \frametitle{NeuroML: create models}
+  \frametitle{NeuroML: creating/simulating models}
   \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{99_images/create-translate-schematic}
@@ -595,13 +611,15 @@
   \note[item]{But NetPyNE imports NeuroML to convert it into its own internal format}
   \note[item]{The advantage here is that simulator developers are free to choose how they want to support NeuroML}
 \end{frame}
-\begin{frame}[c]
-  \frametitle{NeuroML: validate models}
+\begin{frame}[t]
+  \frametitle{NeuroML: validating models}
   \begin{figure}[h]
-    \only<1>{\includegraphics[width=0.9\textwidth]{99_images/validation-schematic-1}}%
-    \only<2>{\includegraphics[width=0.9\textwidth]{99_images/validation-schematic-2}}%
-    \only<3>{\includegraphics[width=0.9\textwidth]{99_images/validation-schematic}}%
+    \only<1>{\includegraphics[width=0.8\textwidth]{99_images/validation-schematic-1}}%
+    \only<2>{\includegraphics[width=0.8\textwidth]{99_images/validation-schematic-2}}%
+    \only<3>{\includegraphics[width=0.8\textwidth]{99_images/validation-schematic}}%
   \end{figure}
+  \only<3>{\footnotetext[1]{\url{https://github.com/OpenSourceBrain/osb-model-validation}}}
+  \only<3>{\footnotetext[1]{\url{https://sciunit.io}}}
   \note[item]{We've already touched on validation a little, but let's look at it in more detail}
   \note[item]{The first level of validation is against the schema---is the model valid, does it have the right structure}
   \note[item]{Since we have access to the complete model description, we can also run additional global checks---are connections correctly defined, for example?}
@@ -612,7 +630,7 @@
   \note[item]{We can then run more tests---do we get the same results everywhere? Does it produce the right behaviour?}
 \end{frame}
 \begin{frame}[c]
-  \frametitle{NeuroML: visualise/analyse models}
+  \frametitle{NeuroML: visualising/analysing models}
   \begin{figure}[h]
     \only<1>{\includegraphics[width=0.9\textwidth]{99_images/20231004-migliore}}%
     \only<2>{\includegraphics[width=0.9\textwidth]{99_images/20231004-multiscaleisn}}%
@@ -622,22 +640,17 @@
   \only<1>{\footnotetext[1]{3D interactive visualisation of \textcite{Migliore2003} using \texttt{pynml-plotmorph}}}
   \only<2>{\footnotetext[1]{3D interactive visualisation of \textcite{Sadeh2017} on Open Source Brain: \url{https://v1.opensourcebrain.org}}}
   \only<3>{\footnotetext[1]{3D interactive visualisation using NetPyNE-UI on Open Source Brain v2: \url{https://opensourcebrain.org}}}
+  \only<4>{\footnotetext[1]{Connectivity metrics for NeuroML conversion of \textcite{Yao2022}}}
 \end{frame}
 \begin{frame}[c]
-  \frametitle{NeuroML: simulate models}
-  \begin{itemize}
-    \item Example simulation: neuron/netpyne
-  \end{itemize}
-\end{frame}
-\begin{frame}[c]
-  \frametitle{NeuroML: fit models}
+  \frametitle{NeuroML: fitting models}
   \begin{itemize}
     \item Figure from docs
     \item Mention inspyred
   \end{itemize}
 \end{frame}
 \begin{frame}[c]
-  \frametitle{NeuroML: share and re-use models}
+  \frametitle{NeuroML: sharing and re-using models}
   \begin{itemize}
     \item GitHub, OSBv1, OSBv2, NeuroML-DB
   \end{itemize}
@@ -650,6 +663,18 @@
   \end{itemize}
 \end{frame}
 \begin{frame}[c]
+  \frametitle{NeuroML: community}
+  \begin{itemize}
+    \item Editorial board, scientific committee, communication channels
+  \end{itemize}
+\end{frame}
+\begin{frame}[c]
+  \frametitle{NeuroML: closing the neuroscience research loop with OSB}
+  \begin{itemize}
+    \item Open Source Brain Video
+  \end{itemize}
+\end{frame}
+\begin{frame}[c]
   \frametitle{NeuroML: projects}
   \begin{itemize}
     \item GSoC, Outreachy, good computer science students
@@ -659,8 +684,9 @@
 \begin{frame}[c]
   \frametitle{NeuroML: resources}
   \begin{center}
-    \fullcite{Sinha2023}\\
-    \Large{\url{https://docs.neuroml.org}}
+    \fullcite{Sinha2023}(in review)\\\vspace{1cm}
+    \Large{\url{https://docs.neuroml.org}}\\
+    \Large{\url{https://opensourcebrain.org}}
   \end{center}
 \end{frame}
 % extras
