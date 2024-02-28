@@ -159,19 +159,21 @@
 \end{frame}
 \begin{frame}[c]
   \frametitle{Models complement experimental neuroscience}
+  Models are fully \alert{observable}, \alert{controllable}.
   \pause{}
   \begin{itemize}
+      \pause{}
     \item Combine individual experimental results into \alert{unified theories}
     \item Explore \alert{generalisability} of experimental results over wider range of conditions
-    \item \alert{Generate} new experimentally testable, physically plausible hypotheses: dictate experiment design
+    \item \alert{Generate} new experimentally testable, physically plausible hypotheses: \alert{dictate experiment design}
   \end{itemize}
   \note[item]{Now, experiments of course, provide us with direct evidence about the brain.}
-  \note[item]{With technology like neuropixels, we are now generating more data on the brain than ever before.}
+  \note[item]{fMRI, EEG, to voltage and calcium imaging, patch clamp recordings}
+  \note[item]{Now: large scale brain observatories}
   \note[item]{Models/theory are necessary for:}
   \note[item]{combining independent experimental results into unified theories}
   \note[item]{exploring these complex systems across wider range of conditions}
   \note[item]{generating new testable hypotheses}
-  \note[item]{Advantages of models: complete control, complete observability}
 \end{frame}
 \begin{frame}[c]
   \frametitle{Models: different scales}
@@ -227,7 +229,7 @@
       \begin{itemize}
         \item NEURON, NEST, Brian, GENESIS, MOOSE, STEPS, ANNarchy, TVB, LFPy, NeuroLib, EDEN, Arbor, NetPyNE\ldots{}
       \end{itemize}
-    \item<2-> but:
+    \item<2-> \alert{but:}
       \begin{itemize}
         \item<2-> different APIs, syntax:
           \begin{itemize}
@@ -239,7 +241,7 @@
           \end{itemize}
         \item<4-> custom machine readable internal representations:
           \begin{itemize}
-            \item<4-> cannot be easily inspected/analysed
+            \item<4-> models cannot be easily inspected/analysed
           \end{itemize}
         \item<5-> ad-hoc utilities:
           \begin{itemize}
@@ -312,14 +314,14 @@
 \end{frame}
 \begin{frame}[t]
   \frametitle{NeuroML standard}
-    Model specification (schema: XSD)
+    Model specification (\alert{schema}: XSD)
     \begin{itemize}
       \item elements
       \item attributes
       \item hierarchical relationships
     \end{itemize}
   \uncover<2>{%
-    Dynamics (LEMS component type definitions)
+    Dynamics (\alert{LEMS component type definitions})
     \begin{itemize}
       \item dynamical behaviour
     \end{itemize}}
@@ -335,20 +337,24 @@
       \item allows generation of \alert{API}s
     \end{itemize}
     \pause{}
-    One can validate a model description against the schema \alert{before simulation}
+    \begin{center}
+      \emph{A model description can be validated against the schema\\\alert{before simulation}}
+    \end{center}
     \footnotetext[1]{\url{https://www.w3.org/TR/xmlschema-1/}}
 \note[item]{That's it. We'll see an example now.}
 \end{frame}
 \begin{frame}[fragile,c]
   \frametitle{NeuroML standard: schema: XSD}
   \begin{center}
-    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
+    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny,highlightlines={2,3}]{xml}
 <xs:simpleType name="Nml2Quantity_voltage"> <!-- For params with dimension voltage -->
   <xs:restriction base="xs:string">
     <xs:pattern value="-?([0-9]*(\.[0-9]+)?)([eE]-?[0-9]+)?[\s]*(V|mV)"/>
   </xs:restriction>
 </xs:simpleType>
-
+    \end{minted}
+    \pause{}
+    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny,highlightlines={7,11}]{xml}
 <xs:complexType name="Izhikevich2007Cell">
   <xs:annotation>
     <xs:documentation>Cell based on ...>
@@ -391,7 +397,7 @@
 \begin{frame}[fragile,c]
   \frametitle{NeuroML standard: dynamics (LEMS)}
   \begin{center}
-    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
+    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny,highlightlines={21,23,25}]{xml}
     <ComponentType name="izhikevich2007Cell" extends="baseCellMembPotCap"
         description="Cell based ...">
 
@@ -428,7 +434,7 @@
   \frametitle{NeuroML standard: XSD and LEMS}
   XSD:
   \begin{center}
-    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
+    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny,highlightlines={4,}]{xml}
       <xs:attribute name="v0" type="Nml2Quantity_voltage" use="required"/>
       <xs:attribute name="k" type="Nml2Quantity_conductancePerVoltage" use="required"/>
       <xs:attribute name="vr" type="Nml2Quantity_voltage" use="required"/>
@@ -442,7 +448,7 @@
   \end{center}
   LEMS:
   \begin{center}
-    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny]{xml}
+    \begin{minted}[breaklines=true,autogobble=True,fontsize=\Tiny,highlightlines={4,}]{xml}
         <Parameter name="v0" dimension="voltage" description="Initial membrane potential"/>
         <Parameter name="k" dimension="conductance_per_voltage"/>
         <Parameter name="vr" dimension="voltage" description="Resting membrane potential"/>
@@ -569,6 +575,75 @@
   \note[item]{These provide the basic APIs required to work with NeuroML models---to create them, to read, write, and modify them}
   \note[item]{PyNeuroML is the suggested tool for use---we don't want people writing XML.}
 \end{frame}
+\begin{frame}[fragile,t]
+  \frametitle{NeuroML software ecosystem: pyNeuroML}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{minted}[breaklines=true,fontsize=\Tiny,breaksymbolleft={},breakindentnchars=4,autogobble]{python}
+    # validation
+    validate_neuroml2("file.nml")
+    doc.validate(recursive=True)
+
+    # inspection
+    element.info()
+    summary(doc)
+    nml2_to_png(doc)
+    nml2_to_svg(doc)
+    generate_nmlgraph(doc)
+
+    # visualisation/analysis
+    plot_2D(cell)
+    plot_interactive_3d(cell)
+    plot_interactive_3d(network)
+
+    plot_channel_densities(cell)
+    plot_time_series(file)
+
+
+    # simulation
+    run_lems_with_jneuroml("sim.xml")
+    run_lems_with_jneuroml_neuron("sim.xml")
+    run_on_nsg("jneuroml_neuron", "sim.xml")
+
+    # sharing
+    create_combine_archive("sim.xml")
+      \end{minted}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{minted}[breaklines=true,fontsize=\Tiny,breaksymbolleft={},breakindentnchars=4,autogobble]{console}
+    $ pynml "file.nml" -validate
+
+
+
+    $ pynml-summary "file.nml"
+    $ pynml -png "file.nml"
+    $ pynml -svg "file.nml"
+    $ pynml "file.nml" -graph
+    $ pynml "file.nml" -matrix 1
+    $ pynml-plotmorph "cell.nml"
+    $ pynml-plotmorph -i "cell.nml"
+    $ pynml-plotmorph -i "network.nml"
+    $ pynml-channelanalysis "channel.nml"
+    $ pynml-plotchan "channel.nml"
+    $ pynml-plotspikes "sim.xml"
+    $ pynml-plottimeseries "sim.xml"
+    $ pynml-plottimeseries "*.dat"
+
+
+
+    $ pynml "siml.xml"
+    $ pynml "siml.xml" -neuron -run
+
+
+
+    $ pynml-archive "file.xml"
+      \end{minted}
+    \end{column}
+  \end{columns}
+  \note[item]{PyNeuroML is the suggested tool for use---we don't want people writing XML.}
+  \note[item]{PyNeuroML includes functions to support the model life cycle}
+  \note[item]{These can be accessed programmatically, but we also provide CLIs to make it easier for users.}
+\end{frame}
 \begin{frame}[fragile,c]
   \frametitle{NeuroML: creating/simulating models}
   Python script to create a new network, and validate it:
@@ -636,48 +711,58 @@
     \only<2>{\includegraphics[width=0.9\textwidth]{99_images/20231004-multiscaleisn}}%
     \only<3>{\includegraphics[width=0.9\textwidth]{99_images/20231004-netpyneui}}%
     \only<4>{\includegraphics[width=0.31\textwidth,keepaspectratio]{99_images/HL23Network.gv}~~\includegraphics[width=0.6\textwidth,keepaspectratio]{99_images/HL23-con-matrix}}
+    \only<5>{\includegraphics[width=0.9\textwidth,keepaspectratio]{99_images/Ih}}
   \end{figure}
   \only<1>{\footnotetext[1]{3D interactive visualisation of \textcite{Migliore2003} using \texttt{pynml-plotmorph}}}
   \only<2>{\footnotetext[1]{3D interactive visualisation of \textcite{Sadeh2017} on Open Source Brain: \url{https://v1.opensourcebrain.org}}}
   \only<3>{\footnotetext[1]{3D interactive visualisation using NetPyNE-UI on Open Source Brain v2: \url{https://opensourcebrain.org}}}
   \only<4>{\footnotetext[1]{Connectivity metrics for NeuroML conversion of \textcite{Yao2022}}}
+  \only<5>{\footnotetext[1]{Automated visualisation of ionic conductance density on a multi-compartmental cell}}
 \end{frame}
 \begin{frame}[c]
   \frametitle{NeuroML: fitting models}
-  \begin{itemize}
-    \item Figure from docs
-    \item Mention inspyred
-  \end{itemize}
+  \begin{figure}[h]
+    \only<1>{\includegraphics[width=0.9\textwidth]{99_images/fitted_izhikevich_screenshot_nwbexplorer}}%
+    \only<2>{\includegraphics[width=0.9\textwidth]{99_images/izhikevich-fitted-sim}}%
+  \end{figure}
+  \only<1>{\footnotetext[1]{Visualising \textcite{Lanore2019} in NWB Explorer on Open Source Brain}}
+  \only<2>{\footnotetext[1]{Izhikevich cells fitted using NeuroML fitting pipeline: NeuroTune, using Inspyred}}
 \end{frame}
 \begin{frame}[c]
   \frametitle{NeuroML: sharing and re-using models}
-  \begin{itemize}
-    \item GitHub, OSBv1, OSBv2, NeuroML-DB
-  \end{itemize}
+  \begin{figure}[h]
+    \only<1>{\includegraphics[width=0.9\textwidth]{99_images/osb-repolist}}%
+    \only<2>{\includegraphics[width=0.9\textwidth]{99_images/osbv1}}%
+    \only<3>{\includegraphics[width=0.9\textwidth]{99_images/osbv2}}%
+    \only<4>{\includegraphics[width=0.9\textwidth]{99_images/neuromldb}}%
+  \end{figure}
+  \only<1>{\footnotetext[1]{Standardized models on Github: Open Source Brain: \url{https://github.com/OpenSourceBrain}}}
+  \only<2>{\footnotetext[1]{Standardized models on Open Source Brain v1: \url{https://v1.opensourcebrain.org}}}
+  \only<3>{\footnotetext[1]{Standardized models on Open Source Brain v2: \url{https://v2.opensourcebrain.org}}}
+  \only<4>{\footnotetext[1]{Standardized models on NeuroML-DB: \url{https://neuroml-db.org}}}
 \end{frame}
 %\section{Under the hood}
 \begin{frame}[c]
-  \frametitle{NeuroML: Documentation}
-  \begin{itemize}
-    \item Jupyterbook
-  \end{itemize}
+  \frametitle{NeuroML: community: events}
+  \begin{figure}[h]
+    \only<1>{\includegraphics[width=0.9\textwidth]{99_images/harmony2024}}%
+    \only<2>{\includegraphics[width=0.9\textwidth]{99_images/cns2024}}%
+  \end{figure}
+  \only<1>{\footnotetext[1]{\url{https://co.mbine.org/events/}}}
+  \only<2>{\footnotetext[1]{\url{https://www.cnsorg.org}}}
 \end{frame}
 \begin{frame}[c]
-  \frametitle{NeuroML: community}
+  \frametitle{NeuroML: projects: GSoC}
   \begin{itemize}
-    \item Editorial board, scientific committee, communication channels
+    \item Open source, cross simulator, large scale network models in NeuroML and PyNN.
+    \item Implementation of SWC to NeuroML converter in PyNeuroML
+    \item Incorporate new features into an advanced, cross-platform 3D viewer for NeuroML cells and networks
   \end{itemize}
 \end{frame}
 \begin{frame}[c]
   \frametitle{NeuroML: closing the neuroscience research loop with OSB}
   \begin{itemize}
     \item Open Source Brain Video
-  \end{itemize}
-\end{frame}
-\begin{frame}[c]
-  \frametitle{NeuroML: projects}
-  \begin{itemize}
-    \item GSoC, Outreachy, good computer science students
   \end{itemize}
 \end{frame}
 % last slide
@@ -688,12 +773,5 @@
     \Large{\url{https://docs.neuroml.org}}\\
     \Large{\url{https://opensourcebrain.org}}
   \end{center}
-\end{frame}
-% extras
-\begin{frame}[c]
-  \frametitle{NeuroML: the APIs}
-  \begin{itemize}
-    \item Python API
-  \end{itemize}
 \end{frame}
 \end{document}
